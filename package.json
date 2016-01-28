@@ -1,0 +1,15 @@
+{
+  "name": "syhelp",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "react-native start"
+  },
+  "dependencies": {
+    "react-native": "^0.18.0",
+    "react-native-gifted-messenger": "0.0.16",
+    "react-native-radio-buttons": "^0.8.1",
+    "react-native-swiper": "^1.4.3",
+    "react-native-vector-icons": "^1.0.4"
+  }
+}
