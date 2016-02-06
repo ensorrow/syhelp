@@ -21,7 +21,7 @@ import TabBar from './app/views/TabBar';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 // debug
-import Chat from './app/views/Chat';
+import Detail from './app/views/Detail';
 
 class MyProject extends React.Component{
   renderScene (route, navigator) {

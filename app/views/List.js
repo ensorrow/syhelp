@@ -21,7 +21,7 @@ export default class List extends React.Component{
   state = {
     opacity: 1,
     dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}).cloneWithRows(['小张老师','交大李老师','师友团队','师友团队','师友团队','师友团队','师友团队','师友团队','师友团队','师友团队','师友团队','师友团队','师友团队','师友团队','师友团队','师友团队']),
-  }
+  };
   changeState (e) {
     if(this.state.opacity==0){
       this.setState({

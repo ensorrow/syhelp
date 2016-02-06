@@ -23,7 +23,7 @@ var vh = Dimensions.get('window').height;
 export default class HomeScene extends React.Component{
   state = {
     opacity: 1,
-  }
+  };
   changeState (e) {
     if(this.state.opacity==0){
       this.setState({

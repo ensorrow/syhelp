@@ -18,7 +18,7 @@ import GiftedMessenger from 'react-native-gifted-messenger';
 export default class extends React.Component{
   state = {
 
-  }
+  };
   getMessages () {
     return [
       {text: 'Are you building a chat app?', name: 'React-Native', image: {uri: 'https://facebook.github.io/react/img/logo_og.png'}, position: 'left', date: new Date(2015, 0, 16, 19, 0)},

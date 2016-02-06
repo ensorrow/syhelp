@@ -33,7 +33,7 @@ class TitleText extends React.Component{
 class BorderBtn extends React.Component{
   state = {
     selected : 0,
-  }
+  };
   render () {
     let content = this.props.children;
 
@@ -88,7 +88,7 @@ class RankSelect extends React.Component{
   state = {
     selectedOption : '特级师友家教'
     // 通过state获取当前选中
-  }
+  };
   render () {
     const options = [
       "特级师友家教",
@@ -168,7 +168,7 @@ class SubmitBtn extends React.Component{
 export default class Order extends React.Component{
   state = {
 
-  }
+  };
   render () {
     return (
       <ScrollView style={{paddingLeft: 34,paddingRight: 34,}} height={vh-63}>

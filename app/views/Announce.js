@@ -19,7 +19,7 @@ export default class extends React.Component{
         rowHasChanged: (row1, row2) => row1 !== row2,
       }),
     loaded: false,
-  }
+  };
   componentDidMount () {
     fetch(BASE_URL)
     .then((res) => res.json())

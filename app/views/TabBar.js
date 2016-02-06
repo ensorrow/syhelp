@@ -12,13 +12,14 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import HomeScene from './HomeScene';
 import Chat from './Chat';
 import Announce from './Announce';
+import Mynamecard from './Mynamecard';
 
 export default class TabBar extends React.Component{
   state = {
     selectedTab: 'Home',
     notifCount: 0,
     presses: 0,
-  }
+  };
   _renderContent (){
     return(
       <HomeScene navigator={this.props.navigator}/>
@@ -32,6 +33,11 @@ export default class TabBar extends React.Component{
   _renderContent2 (){
     return(
       <Chat navigator={this.props.navigator}/>
+    )
+  }
+  _renderContent3 (){
+    return(
+        <Mynamecard navigator={this.props.navigator} />
     )
   }
   render () {
@@ -80,17 +86,17 @@ export default class TabBar extends React.Component{
           {this._renderContent2()}
         </Icon.TabBarItem>
         <Icon.TabBarItem
-          title="more"
+          title="我"
           iconName="ios-star-outline"
           selectedIconName="ios-star"
-          selected={this.state.selectedTab === 'greenTab'}
+          selected={this.state.selectedTab === 'Me'}
           onPress={() => {
             this.setState({
-              selectedTab: 'greenTab',
+              selectedTab: 'Me',
               presses: this.state.presses + 1
             });
           }}>
-          {this._renderContent()}
+          {this._renderContent3()}
         </Icon.TabBarItem>
       </TabBarIOS>
     );

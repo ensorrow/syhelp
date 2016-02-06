@@ -13,7 +13,10 @@ import React, {
 
 import Order from './Order';
 import Dimensions from 'Dimensions';
+import Chat from './Chat';
+
 var vh = Dimensions.get('window').height;
+var vw = Dimensions.get('window').width;
 class Namecard extends React.Component{
   render () {
     return (
@@ -23,7 +26,6 @@ class Namecard extends React.Component{
         paddingBottom: 10,
         paddingLeft: 25,
         paddingRight: 25,
-
       }}>
         <Image
           source={{uri:'http://ensorrow.github.io/img/head.gif'}}
@@ -209,9 +211,6 @@ class Timetable extends React.Component{
   )}
 }
 export default class Detail extends React.Component{
-  state = {
-
-  }
   render () {
     return (
       <View>
@@ -219,9 +218,28 @@ export default class Detail extends React.Component{
           <Namecard />
           <Timetable />
         </ScrollView>
-        <TouchableOpacity
-         style={styles.flBtn}
-         onPress={
+        <View style={{flexDirection: 'row',position: 'absolute',bottom: 0,width: vw,borderWidth: 1,borderColor: '#535353'}}>
+          <TouchableOpacity
+              style={styles.bottomBtn}
+              onPress={
+           () => {
+             let nav = this.props.navigator;
+             nav.push({
+               component: Chat,
+               name: '待添加',
+               bar: true,
+             });
+           }
+         }
+          >
+            <Text style={{color: '#8956a1'}}>
+              私信
+            </Text>
+          </TouchableOpacity>
+            <View style={styles.columnBorder}></View>
+          <TouchableOpacity
+              style={styles.bottomBtn}
+              onPress={
            () => {
              let nav = this.props.navigator;
              nav.push({
@@ -231,11 +249,12 @@ export default class Detail extends React.Component{
              });
            }
          }
-         >
-          <Text style={styles.white}>
-          预约
-          </Text>
-        </TouchableOpacity>
+          >
+            <Text style={{color: '#8956a1'}}>
+              预约
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
     )
   }
@@ -282,16 +301,17 @@ var styles = StyleSheet.create({
     color: '#fff',
     fontWeight: 'bold'
   },
-  flBtn: {
-    position: 'absolute',
-    right: 20,
-    bottom: 20,
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-    backgroundColor: '#8956A1',
+  bottomBtn: {
     justifyContent: 'center',
     alignItems: 'center',
-    elevation: 10,
-  }
+    paddingTop: 10,
+    paddingBottom: 10,
+    flex: 1,
+      backgroundColor: '#fff',
+  },
+    columnBorder: {
+        borderWidth: 1,
+        borderColor: '#535353',
+        height: 34,
+    },
 });
