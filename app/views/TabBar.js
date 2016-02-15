@@ -10,7 +10,7 @@ import React , {
 
 import Icon from 'react-native-vector-icons/Ionicons';
 import HomeScene from './HomeScene';
-import Chat from './Chat';
+import ChatList from './ChatList';
 import Announce from './Announce';
 import Mynamecard from './Mynamecard';
 
@@ -32,7 +32,7 @@ export default class TabBar extends React.Component{
   }
   _renderContent2 (){
     return(
-      <Chat navigator={this.props.navigator}/>
+      <ChatList navigator={this.props.navigator}/>
     )
   }
   _renderContent3 (){

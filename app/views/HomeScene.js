@@ -17,6 +17,7 @@ import React, {
 import Swiper from 'react-native-swiper';
 import List from './List';
 import Icon from 'react-native-vector-icons/Ionicons';
+import Webexplore from './Webexplore';
 var vw = Dimensions.get('window').width;
 var vh = Dimensions.get('window').height;
 
@@ -120,7 +121,18 @@ export default class HomeScene extends React.Component{
                   师友品牌家教
                 </Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.mktt}>
+              <TouchableOpacity style={styles.mktt}  onPress={() => {
+                let nav = this.props.navigator;
+                if(nav) {
+                  nav.push({
+                    name: '品牌家教列表',
+                    component: Webexplore,
+                    bar: false,
+                  });
+                } else{
+                  throw error;
+                }
+              }}>
                 <Text style={{color: '#fff'}}>
                   市场自由家教
                 </Text>

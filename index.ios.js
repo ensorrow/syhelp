@@ -21,7 +21,7 @@ import TabBar from './app/views/TabBar';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 // debug
-import Detail from './app/views/Detail';
+import Webexplore from './app/views/Webexplore';
 
 class MyProject extends React.Component{
   renderScene (route, navigator) {
