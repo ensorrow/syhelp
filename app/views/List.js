@@ -14,9 +14,36 @@ import React, {
 
 import Dimensions from 'Dimensions';
 import Detail from './Detail';
-import Order from './Order';
+import Order2 from './Order2';
 import Icon from 'react-native-vector-icons/Ionicons';
 var vh = Dimensions.get('window').height;
+
+class FollowBtn extends React.Component{
+  state = {
+    followed: false
+  };
+  changeState () {
+    this.setState({followed: !this.state.follow});
+  }
+  render () {
+    let btn;
+    if(this.state.followed) {
+      btn = (
+          <TouchableOpacity style={[styles.followedbtn,styles.btn]}>
+            <Text style={styles.followedtext}>已关注</Text>
+          </TouchableOpacity>
+      )
+    }else {
+      btn = (
+          <TouchableOpacity style={[styles.tofollowbtn,styles.btn]} onPress={()=>this.changeState()}>
+            <Text style={styles.tofollowtext}>关注</Text>
+          </TouchableOpacity>
+      )
+    }
+    return btn;
+  }
+}
+
 export default class List extends React.Component{
   state = {
     opacity: 1,
@@ -68,6 +95,7 @@ export default class List extends React.Component{
             愿我们一起实现理想！
           </Text>
         </View>
+        <FollowBtn />
       </TouchableOpacity>
     )
   }
@@ -129,7 +157,7 @@ export default class List extends React.Component{
            () => {
              let nav = this.props.navigator;
              nav.push({
-               component: Order,
+               component: Order2,
                name: '订单填写',
                bar: true,
              });
@@ -205,5 +233,30 @@ var styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     elevation: 10,
+  },
+  btn: {
+    borderColor: '#8956a1',
+    borderWidth: 1,
+    borderRadius: 3,
+    width: 40,
+    height: 21,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
+    right: 15
+  },
+  followedbtn: {
+    backgroundColor: '#8956a1',
+  },
+  followedtext: {
+    color: '#fff',
+    fontSize: 12
+  },
+  tofollowbtn: {
+    backgroundColor: '#fff'
+  },
+  tofollowtext: {
+    color: '#8956a1',
+    fontSize: 12
   }
 })

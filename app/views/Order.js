@@ -9,6 +9,7 @@ import React, {
   ScrollView,
   Navigator,
   TouchableOpacity,
+  Picker
 } from 'react-native';
 
 import Dimensions from 'Dimensions';
@@ -165,9 +166,51 @@ class SubmitBtn extends React.Component{
     }
   }
 }
+
+class Days extends React.Component{
+  state = {
+    selected: false
+  };
+  changeState () {
+    this.setState({
+      selected: !this.state.selected
+    });
+  }
+  render () {
+    let btn;
+    if(this.props.free){
+      if(this.state.selected) {
+        btn = (
+            <TouchableOpacity style={[styles.items,{backgroundColor: '#8806A1'}]} onPress = {()=>this.changeState()}>
+              <Text style={styles.white}>
+                已选中
+              </Text>
+            </TouchableOpacity>
+        )
+      } else {
+        btn = (
+            <TouchableOpacity style={[styles.items,{backgroundColor: '#8956A1'}]} onPress = {()=>this.changeState()}>
+              <Text style={styles.white}>
+                可预约
+              </Text>
+            </TouchableOpacity>
+        )
+      }
+    } else {
+      btn = (
+          <View style={styles.items}>
+            <Text style={styles.white}>
+            </Text>
+          </View>
+      )
+    }
+    return btn;
+  }
+}
+
 export default class Order extends React.Component{
   state = {
-
+    language: 'java'
   };
   render () {
     return (
@@ -176,6 +219,13 @@ export default class Order extends React.Component{
         <RankSelect/>
         <TitleText>单击方块选择试听时间</TitleText>
         <Timetable />
+        <TitleText>选择年级和学科</TitleText>
+        <Picker
+            selectedValue={this.state.language}
+            onValueChange={(lang) => this.setState({language: lang})}>
+          <Picker.Item label="Java" value="java" />
+          <Picker.Item label="JavaScript" value="js" />
+        </Picker>
         <SubmitBtn>提交</SubmitBtn>
       </ScrollView>
     )
@@ -210,128 +260,63 @@ class Timetable extends React.Component{
             <Text style={styles.white}>星期一
             </Text>
           </View>
-          <View style={styles.items}>
-            <Text style={styles.white}>
-            </Text>
-          </View>
-          <View style={styles.items}>
-            <Text style={styles.white}>
-            </Text>
-          </View>
-          <View style={styles.items}>
-            <Text style={styles.white}>
-            </Text>
-          </View>
+          <Days />
+          <Days />
+          <Days />
         </View>
         <View style={styles.row}>
           <View style={styles.items0}>
             <Text style={styles.white}>星期二
             </Text>
           </View>
-          <View style={styles.items}>
-            <Text style={styles.white}>
-            </Text>
-          </View>
-          <View style={styles.items}>
-            <Text style={styles.white}>
-            </Text>
-          </View>
-          <View style={styles.items}>
-            <Text style={styles.white}>
-            </Text>
-          </View>
+          <Days />
+          <Days />
+          <Days />
         </View>
         <View style={styles.row}>
           <View style={styles.items0}>
             <Text style={styles.white}>星期三
             </Text>
           </View>
-          <View style={styles.items}>
-            <Text style={styles.white}>
-            </Text>
-          </View>
-          <View style={styles.items}>
-            <Text style={styles.white}>
-            </Text>
-          </View>
-          <View style={styles.items}>
-            <Text style={styles.white}>
-            </Text>
-          </View>
+          <Days />
+          <Days />
+          <Days />
         </View>
         <View style={styles.row}>
           <View style={styles.items0}>
             <Text style={styles.white}>星期四
             </Text>
           </View>
-          <View style={styles.items}>
-            <Text style={styles.white}>
-            </Text>
-          </View>
-          <View style={[styles.items,{backgroundColor: '#8956A1'}]}>
-            <Text style={styles.white}>
-            可预约
-            </Text>
-          </View>
-          <View style={styles.items}>
-            <Text style={styles.white}>
-            </Text>
-          </View>
+          <Days />
+          <Days free={true} />
+          <Days />
         </View>
         <View style={styles.row}>
           <View style={styles.items0}>
             <Text style={styles.white}>星期五
             </Text>
           </View>
-          <View style={styles.items}>
-            <Text style={styles.white}>
-            </Text>
-          </View>
-          <View style={styles.items}>
-            <Text style={styles.white}>
-            </Text>
-          </View>
-          <View style={styles.items}>
-            <Text style={styles.white}>
-            </Text>
-          </View>
+          <Days />
+          <Days />
+          <Days />
         </View>
         <View style={styles.row}>
           <View style={styles.items0}>
             <Text style={styles.white}>星期六
             </Text>
           </View>
-          <View style={[styles.items,{backgroundColor: '#8956A1'}]}>
-            <Text style={styles.white}>
-            可预约
-            </Text>
-          </View>
-          <View style={styles.items}>
-            <Text style={styles.white}>
-            </Text>
-          </View>
-          <View style={styles.items}>
-            <Text style={styles.white}>
-            </Text>
-          </View>
+          <Days free={true} />
+          <Days />
+          <Days />
         </View>
         <View style={styles.row}>
           <View style={styles.items0}>
             <Text style={styles.white}>星期日
             </Text>
           </View>
-          <View style={styles.items}>
-            <Text style={styles.white}>
-            </Text>
-          </View>
-          <View style={styles.items}>
-            <Text style={styles.white}>
-            </Text>
-          </View>
-          <View style={styles.items}>
-            <Text style={styles.white}>
-            </Text>
-          </View>
+          <Days />
+          <Days />
+          <Days />
         </View>
       </View>
     </View>

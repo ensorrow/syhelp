@@ -269,6 +269,7 @@ var styles = StyleSheet.create({
   },
   cardpic: {
     borderRadius: 40,
+    backgroundColor: '#bfbfbf'
   },
   timetable:{
     paddingLeft: 15,

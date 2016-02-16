@@ -126,6 +126,7 @@ var styles = StyleSheet.create({
     },
     cardpic: {
         borderRadius: 40,
+        backgroundColor: '#bfbfbf'
     },
     btn: {
         backgroundColor: '#8956a1',

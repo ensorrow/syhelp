@@ -21,7 +21,7 @@ import TabBar from './app/views/TabBar';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 // debug
-import Webexplore from './app/views/Webexplore';
+import Order from './app/views/Order';
 
 class MyProject extends React.Component{
   renderScene (route, navigator) {
@@ -58,7 +58,8 @@ class MyProject extends React.Component{
       <Navigator
         initialRoute = {{
           name: 'main',
-          component: TabBar,
+          component: Order,
+          bar: false
         }}
         renderScene = {this.renderScene}
         />
