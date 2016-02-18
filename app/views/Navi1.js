@@ -10,7 +10,7 @@ import React, {
   Dimensions
 } from 'react-native';
 
-import Chat from './Chat';
+import Chat from './Chat1';
 import Icon from 'react-native-vector-icons/Ionicons';
 export default class Navi1 extends React.Component{
 

@@ -9,6 +9,7 @@ import React, {
     ScrollView,
     Navigator,
     TouchableOpacity,
+    Picker
 } from 'react-native';
 
 import Dimensions from 'Dimensions';

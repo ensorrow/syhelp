@@ -34,8 +34,10 @@ export default class extends React.Component{
     return (
       <TouchableOpacity style={styles.rowItem}>
         <View style={styles.rowContainer}>
-          <Text style={styles.title}>{dataSource.team_cn}
-          </Text>
+          <View style={styles.row}>
+            <Text style={styles.title}>{dataSource.team_cn}</Text>
+            <Text style={styles.date}>2015.5.26</Text>
+          </View>
           <Image
             source={{uri: dataSource.logo}}
             style={{width: 108,height: 68,backgroundColor: '#d2d2d2'}}
@@ -102,13 +104,21 @@ const styles = StyleSheet.create({
   },
   rowContainer: {
     flex: 1,
-    paddingTop: 15,
+    paddingTop: 10,
     paddingLeft: 18,
     paddingRight: 18,
     paddingBottom: 8
   },
   title: {
     fontWeight: 'bold',
-    marginBottom: 11
+    marginBottom: 8
+  },
+  date: {
+    fontSize: 12,
+    color: '#707070'
+  },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   }
 })

@@ -13,7 +13,7 @@ import React, {
 } from 'react-native';
 
 import Dimensions from 'Dimensions';
-import Chat from './Chat';
+import Chat from './Chat1';
 import Icon from 'react-native-vector-icons/Ionicons';
 var vh = Dimensions.get('window').height;
 export default class ChatList extends React.Component{
@@ -81,7 +81,7 @@ export default class ChatList extends React.Component{
       content =
         <ListView
           ref="listview"
-          height={vh-103}
+          height={vh-152}
           dataSource={this.state.dataSource}
           renderRow={e=>this.renderRow(e)}
           automaticallyAdjustContentInsets={false}
@@ -95,7 +95,7 @@ export default class ChatList extends React.Component{
         <View style={styles.statusbar}>
         </View>
         <View style={styles.header}>
-          <Text style={styles.headerText}>公告
+          <Text style={styles.headerText}>对话
           </Text>
         </View>
         <View>

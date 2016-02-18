@@ -37,6 +37,18 @@ export default class HomeScene extends React.Component{
       });
     }
   }
+  jump (url) {
+    let nav = this.props.navigator;
+    if(nav){
+      nav.push({
+        name: 'webview',
+        component: Webexplore,
+        params: {
+          url: url
+        }
+      })
+    }
+  }
   render () {
     return (
       <View>
@@ -69,9 +81,15 @@ export default class HomeScene extends React.Component{
         </View>
         <ScrollView height={vh-124} style={styles.container} automaticallyAdjustContentInsets={false}>
           <Swiper paginationStyle={{bottom: 6}} autoplay={true} height={77} horizontal={true} >
-            <Image style={styles.scrollimg} width={vw}  source={require('../images/scrollimgs1.png')}/>
-            <Image style={styles.scrollimg}  source={require('../images/scrollimgs2.png')}/>
-            <Image style={styles.scrollimg}  source={require('../images/scrollimgs3.png')}/>
+            <TouchableOpacity onPress={()=>this.jump('http://ensorrow.github.io')}>
+              <Image style={styles.scrollimg}  source={require('../images/scrollimgs1.png')}/>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={()=>this.jump('http:/baidu.com')}>
+              <Image style={styles.scrollimg}  source={require('../images/scrollimgs2.png')}/>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={()=>this.jump('http://bing.com')}>
+              <Image style={styles.scrollimg}  source={require('../images/scrollimgs3.png')}/>
+            </TouchableOpacity>
           </Swiper>
           <View style={styles.mainWrapper}>
             <View style={[styles.title,{marginTop: 13}]}>
@@ -128,6 +146,9 @@ export default class HomeScene extends React.Component{
                     name: '品牌家教列表',
                     component: Webexplore,
                     bar: false,
+                    params: {
+                      url: 'http://ensorrow.github.io'
+                    }
                   });
                 } else{
                   throw error;

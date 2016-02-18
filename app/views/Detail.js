@@ -13,7 +13,7 @@ import React, {
 
 import Order from './Order';
 import Dimensions from 'Dimensions';
-import Chat from './Chat';
+import Chat from './Chat1';
 
 var vh = Dimensions.get('window').height;
 var vw = Dimensions.get('window').width;

@@ -9,7 +9,8 @@ import React, {
   ScrollView,
   Navigator,
   TouchableOpacity,
-  Picker
+  Picker,
+  TextInput
 } from 'react-native';
 
 import Dimensions from 'Dimensions';
@@ -210,22 +211,63 @@ class Days extends React.Component{
 
 export default class Order extends React.Component{
   state = {
-    language: 'java'
+    grade: 'high1',
+    subject: 'mat'
   };
   render () {
     return (
       <ScrollView style={{paddingLeft: 34,paddingRight: 34,}} height={vh-63}>
         <TitleText>选择品牌级别</TitleText>
         <RankSelect/>
+        <TitleText>选择年级和学科</TitleText>
+        <View style={styles.row}>
+          <Picker
+              selectedValue={this.state.grade}
+              onValueChange={(val) => this.setState({grade: val})}
+              itemStyle={{fontSize: 14}}
+              style={styles.picker}
+          >
+            <Picker.Item label="小学一年级" value="pri1" />
+            <Picker.Item label="小学二年级" value="pri2" />
+            <Picker.Item label="小学三年级" value="pri3" />
+            <Picker.Item label="小学四年级" value="pri4" />
+            <Picker.Item label="小学五年级" value="pri5" />
+            <Picker.Item label="小学六年级" value="pri6" />
+            <Picker.Item label="初中一年级" value="mid1" />
+            <Picker.Item label="初中二年级" value="mid2" />
+            <Picker.Item label="初中三年级" value="mid3" />
+            <Picker.Item label="高中一年级" value="high1" />
+            <Picker.Item label="高中二年级" value="high2" />
+            <Picker.Item label="高中三年级" value="high3" />
+          </Picker>
+          <Picker
+              selectedValue={this.state.subject}
+              onValueChange={(val) => this.setState({subject: val})}
+              itemStyle={{fontSize: 14}}
+              style={styles.picker}
+          >
+            <Picker.Item label="语文" value="chi" />
+            <Picker.Item label="数学" value="mat" />
+            <Picker.Item label="英语" value="eng" />
+            <Picker.Item label="物理" value="phy" />
+            <Picker.Item label="化学" value="che" />
+            <Picker.Item label="生物" value="bio" />
+            <Picker.Item label="政治" value="pol" />
+            <Picker.Item label="历史" value="his" />
+            <Picker.Item label="地理" value="geo" />
+          </Picker>
+        </View>
         <TitleText>单击方块选择试听时间</TitleText>
         <Timetable />
-        <TitleText>选择年级和学科</TitleText>
-        <Picker
-            selectedValue={this.state.language}
-            onValueChange={(lang) => this.setState({language: lang})}>
-          <Picker.Item label="Java" value="java" />
-          <Picker.Item label="JavaScript" value="js" />
-        </Picker>
+        <Text style={{color: '#626262',fontSize: 12,marginBottom: 5,marginTop: 10}}>温馨提示: 上课时间仅供参考,可以更改</Text>
+        <TitleText>请输入授课地点</TitleText>
+        <TextInput
+          style={styles.defaultInput}
+          />
+        <TitleText>请输入手机号码</TitleText>
+        <TextInput
+          style={styles.defaultInput}
+          />
         <SubmitBtn>提交</SubmitBtn>
       </ScrollView>
     )
@@ -391,6 +433,22 @@ var styles = StyleSheet.create({
     paddingBottom: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#8956a1'
+    backgroundColor: '#8956a1',
+    borderRadius: 5
+  },
+  picker: {
+    flex: 1,
+    marginTop: -10
+  },
+  defaultInput: {
+    height: 28,
+    fontSize: 14,
+    paddingLeft: 10,
+    paddingRight: 10,
+    backgroundColor: '#fff',
+    borderRadius: 5,
+    flex: 1,
+    borderColor: '#434343',
+    borderWidth: 1
   }
 });
