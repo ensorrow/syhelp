@@ -18,6 +18,8 @@ import Order2 from './Order2';
 import Icon from 'react-native-vector-icons/Ionicons';
 var vh = Dimensions.get('window').height;
 
+var TUTOR_DETAIL = 'https://tztestzt.applinzi.com/Api/App/tutor_detail';
+var BASE_URL = 'http://platform.sina.com.cn/sports_all/client_api?app_key=3571367214&_sport_t_=football&_sport_s_=opta&_sport_a_=teamOrder&type=213&season=2015&format=json';
 class FollowBtn extends React.Component{
   state = {
     followed: false
@@ -49,6 +51,30 @@ export default class List extends React.Component{
     opacity: 1,
     dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}).cloneWithRows(['小张老师','交大李老师','师友团队','师友团队','师友团队','师友团队','师友团队','师友团队','师友团队','师友团队','师友团队','师友团队','师友团队','师友团队','师友团队','师友团队']),
   };
+  componentDidMount () {
+    function mystatus(response) {
+      if (response.status >= 200 && response.status<300) {
+        return Promise.resolve(response);
+      } else {
+        return Promise.reject(new Error(response.statusText));
+      }
+    }
+    function myjson(res) {
+      return res.json()
+    }
+    //function status(res) {
+    //  if(res.status>=200&&res.status<300){
+    //    return Promise.resolve(res);
+    //  } else {
+    //    return Promise.reject(new Error(res.statusText))
+    //  }
+    //}
+    fetch(BASE_URL)
+        .then(mystatus)
+        .then(myjson)
+    .then((data)=>alert(data.result.data[0].team_cn))
+    .catch((err)=>alert('err'+err));
+  }
   changeState (e) {
     if(this.state.opacity==0){
       this.setState({
@@ -72,7 +98,7 @@ export default class List extends React.Component{
             nav.push({
               name: '家教名片',
               component: Detail,
-              bar: true,
+              bar: true
             });
           } else{
             throw error;

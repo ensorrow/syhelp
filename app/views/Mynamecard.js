@@ -11,43 +11,92 @@ import React , {
     Dimensions
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import Login from './Login';
+import Register from './Register';
 
 var vw = Dimensions.get('window').width;
 var vh = Dimensions.get('window').height;
 
 class Namecard extends React.Component{
+    state = {
+        user: 'tourist'
+    };
     render () {
-        return (
-            <View style={styles.namecard}>
-                <View style={{
+        let content;
+        if(this.state.user=='tourist'){
+            content = (
+                <View style={styles.namecard}>
+                    <View style={{
                     paddingTop: 10,
                     paddingBottom: 10,
                     paddingLeft: 25,
                     paddingRight: 25,
                   }}>
-                    <Image
-                        source={{uri:'http://ensorrow.github.io/img/head.gif'}}
-                        width={80}
-                        height={80}
-                        style={styles.cardpic}
-                    />
+                        <View style={[styles.cardpic,{width:80,height:80,alignItems:'center',justifyContent:'center'}]}>
+                            <Icon
+                                name="ios-person-outline"
+                                style={{fontSize: 60,color: '#666'}}
+                            />
+                        </View>
+                    </View>
+                    <View style={{justifyContent:'center',alignItems: 'center',flexDirection:'row',height:100,flex: 1}}>
+                        <TouchableOpacity onPress={
+                            ()=>this.props.navigator.push({
+                                name: '登录',
+                                component: Login,
+                                bar: {true}
+                            })
+                        }>
+                            <Text style={{fontSize: 16}}>登录</Text>
+                        </TouchableOpacity>
+                        <Text> / </Text>
+                        <TouchableOpacity onPress={
+                            ()=>this.props.navigator.push({
+                                name: '注册',
+                                component: Register,
+                                bar: {true}
+                            })
+                        }>
+                            <Text style={{fontSize: 16}}>注册</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
-                <View style={{flex: 1,paddingTop: 10}}>
-                    <View style={{flexDirection:'row',paddingTop:5,paddingBottom:5}}>
-                        <Text style={{color:'#8A56A1',fontSize: 16}}>王小明
-                        </Text>
-                        <Text style={{color: '#00469E',left: 5}}>♂
+            )
+        } else {
+            content = (
+                <View style={styles.namecard}>
+                    <View style={{
+                    paddingTop: 10,
+                    paddingBottom: 10,
+                    paddingLeft: 25,
+                    paddingRight: 25,
+                  }}>
+                        <Image
+                            source={{uri:'http://ensorrow.github.io/img/head.gif'}}
+                            width={80}
+                            height={80}
+                            style={styles.cardpic}
+                        />
+                    </View>
+                    <View style={{flex: 1,paddingTop: 10}}>
+                        <View style={{flexDirection:'row',paddingTop:5,paddingBottom:5}}>
+                            <Text style={{color:'#8A56A1',fontSize: 16}}>王小明
+                            </Text>
+                            <Text style={{color: '#00469E',left: 5}}>♂
+                            </Text>
+                        </View>
+                        <View style={{flexDirection:'row',paddingBottom: 3}}>
+                            <Text style={{}}>家长
+                            </Text>
+                        </View>
+                        <Text style={{}}>陕西省西安市碑林区
                         </Text>
                     </View>
-                    <View style={{flexDirection:'row',paddingBottom: 3}}>
-                        <Text style={{}}>家长
-                        </Text>
-                    </View>
-                    <Text style={{}}>陕西省西安市碑林区
-                    </Text>
                 </View>
-            </View>
-        )}
+            )
+        }
+        return content;
+    }
 }
 export default class extends React.Component{
     render () {
@@ -60,7 +109,7 @@ export default class extends React.Component{
                     </Text>
                 </View>
                 <ScrollView style={{height: vh-112}}>
-                    <Namecard />
+                    <Namecard navigator={this.props.navigator}/>
                     <View style={{paddingLeft: 5,paddingRight: 5,flexDirection: 'row',flexWrap: 'wrap'}}>
                         <TouchableOpacity style={[styles.btn,{width: vw/2-15}]}>
                             <Icon name="heart" style={styles.btnIcon} />
@@ -148,4 +197,12 @@ var styles = StyleSheet.create({
         color: '#fff',
         left: 4,
     },
+    loginBtn: {
+        paddingTop: 10,
+        paddingBottom: 10,
+        width: 48,
+        borderRadius: 5,
+        alignItems: 'center',
+        backgroundColor: '#00b7ee'
+    }
 });

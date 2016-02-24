@@ -1,12 +1,13 @@
 'use strict';
 
-import React , {
+import React, {
   AppRegistry,
   StyleSheet,
   Text,
   View,
   TabBarIOS,
-} from 'react-native';
+}
+from 'react-native';
 
 import Icon from 'react-native-vector-icons/Ionicons';
 import HomeScene from './HomeScene';
@@ -14,33 +15,33 @@ import ChatList from './ChatList';
 import Announce from './Announce';
 import Mynamecard from './Mynamecard';
 
-export default class TabBar extends React.Component{
+export default class TabBar extends React.Component {
   state = {
     selectedTab: 'Home',
     notifCount: 0,
     presses: 0,
   };
-  _renderContent (){
-    return(
+  _renderContent() {
+    return (
       <HomeScene navigator={this.props.navigator}/>
     )
   }
-  _renderContent1 (){
-    return(
+  _renderContent1() {
+    return (
       <Announce navigator={this.props.navigator}/>
     )
   }
-  _renderContent2 (){
-    return(
+  _renderContent2() {
+    return (
       <ChatList navigator={this.props.navigator}/>
     )
   }
-  _renderContent3 (){
-    return(
-        <Mynamecard navigator={this.props.navigator} />
+  _renderContent3() {
+    return (
+      <Mynamecard navigator={this.props.navigator} />
     )
   }
-  render () {
+  render() {
     return (
       <TabBarIOS>
         <Icon.TabBarItem

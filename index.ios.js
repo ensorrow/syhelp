@@ -44,7 +44,6 @@ var storage = new Storage({
 import Chat from './app/views/Chat1';
 
 var USER_TYPE = 'https://tztestzt.applinzi.com/Api/App/index';
-var TUTOR_DETAIL = 'https://ensorrow.applinzi.com/Api/App/tutor_detail';
 
 class MyProject extends React.Component{
   renderScene (route, navigator) {
@@ -92,7 +91,7 @@ class MyProject extends React.Component{
       return response.json();
     }
 
-    fetch(TUTOR_DETAIL)
+    fetch(USER_TYPE)
     .then(status)
     .then(json)
     .then(function(data) {

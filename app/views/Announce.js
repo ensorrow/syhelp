@@ -26,9 +26,9 @@ export default class extends React.Component{
     .then((resData) => {
       this.setState({
         dataSource: this.state.dataSource.cloneWithRows(resData.result.data),
-        loaded: true,
+        loaded: true
       })
-    }).done();
+    }).catch((err)=>alert('error connect '+err));
   }
   renderRow (dataSource) {
     return (
