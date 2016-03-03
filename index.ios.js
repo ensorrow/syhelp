@@ -43,7 +43,7 @@ var storage = new Storage({
 // debug
 import Chat from './app/views/Chat1';
 
-var USER_TYPE = 'https://tztestzt.applinzi.com/Api/App/index';
+var USER_TYPE = 'https://tztestzt.applinzi.com/Api/App/login';
 
 class MyProject extends React.Component{
   renderScene (route, navigator) {
@@ -90,12 +90,26 @@ class MyProject extends React.Component{
     function json(response) {
       return response.json();
     }
-
-    fetch(USER_TYPE)
+    let request = new Request(USER_TYPE, {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      body: "user=q&pwds=q"
+    });
+    fetch(request)
     .then(status)
     .then(json)
     .then(function(data) {
       console.log('succeed', data);
+      data = JSON.parse(data);
+      storage.save({
+        key: 'loginState',
+        rawData: {
+          user: data.msg,
+          token: data.data
+        }
+      })
     }).catch(function(error) {
       console.log('request failed', error);
     });
@@ -106,7 +120,10 @@ class MyProject extends React.Component{
         initialRoute = {{
           name: 'main',
           component: TabBar,
-          bar: false
+          bar: false,
+          params: {
+            storage: storage
+          }
         }}
         renderScene = {this.renderScene}
         />

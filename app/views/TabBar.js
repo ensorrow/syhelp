@@ -38,7 +38,7 @@ export default class TabBar extends React.Component {
   }
   _renderContent3() {
     return (
-      <Mynamecard navigator={this.props.navigator} />
+      <Mynamecard storage={this.props.storage} navigator={this.props.navigator} />
     )
   }
   render() {

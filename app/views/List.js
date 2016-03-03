@@ -72,7 +72,7 @@ export default class List extends React.Component{
     fetch(BASE_URL)
         .then(mystatus)
         .then(myjson)
-    .then((data)=>alert(data.result.data[0].team_cn))
+    .then((data)=>console.log(data.result.data[0].team_cn))
     .catch((err)=>alert('err'+err));
   }
   changeState (e) {

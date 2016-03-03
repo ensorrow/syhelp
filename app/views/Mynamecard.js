@@ -100,6 +100,12 @@ class Namecard extends React.Component{
 }
 export default class extends React.Component{
     render () {
+        let storage = this.props.storage;
+        storage.load({
+            key: 'loginState'
+        })
+        .then( ret => {console.log(ret.user);})
+        .catch(err => console.log(err));
         return (
             <View>
                 <View style={styles.statusbar}>
