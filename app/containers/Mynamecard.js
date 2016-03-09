@@ -19,9 +19,25 @@ var vh = Dimensions.get('window').height;
 
 class Namecard extends React.Component{
     state = {
-        user: 'tourist'
+        user: 'tourist',
+        name: '吕哲扬',
+        gender: '♂',
+        address: '陕西省西安市碑林区'
     };
+    componentDidMount () {
+      let storage = this.props.storage;
+      storage.load({
+            key: 'loginState'
+          })
+          .then(
+              ret => {
+                if(ret.token) {this.setState({user: 'user'});}
+              }
+          )
+          .catch(err => console.log(err));
+    }
     render () {
+
         let content;
         if(this.state.user=='tourist'){
             content = (
@@ -80,16 +96,16 @@ class Namecard extends React.Component{
                     </View>
                     <View style={{flex: 1,paddingTop: 10}}>
                         <View style={{flexDirection:'row',paddingTop:5,paddingBottom:5}}>
-                            <Text style={{color:'#8A56A1',fontSize: 16}}>王小明
+                            <Text style={{color:'#8A56A1',fontSize: 16}}>{this.state.name}
                             </Text>
-                            <Text style={{color: '#00469E',left: 5}}>♂
+                            <Text style={{color: '#00469E',left: 5}}>{this.state.gender}
                             </Text>
                         </View>
                         <View style={{flexDirection:'row',paddingBottom: 3}}>
-                            <Text style={{}}>家长
+                            <Text style={{}}>{this.state.type}
                             </Text>
                         </View>
-                        <Text style={{}}>陕西省西安市碑林区
+                        <Text style={{}}>{this.state.address}
                         </Text>
                     </View>
                 </View>
@@ -100,12 +116,7 @@ class Namecard extends React.Component{
 }
 export default class extends React.Component{
     render () {
-        let storage = this.props.storage;
-        storage.load({
-            key: 'loginState'
-        })
-        .then( ret => {console.log(ret.user);})
-        .catch(err => console.log(err));
+
         return (
             <View>
                 <View style={styles.statusbar}>
@@ -115,7 +126,7 @@ export default class extends React.Component{
                     </Text>
                 </View>
                 <ScrollView style={{height: vh-112}}>
-                    <Namecard navigator={this.props.navigator}/>
+                    <Namecard navigator={this.props.navigator} storage={this.props.storage}/>
                     <View style={{paddingLeft: 5,paddingRight: 5,flexDirection: 'row',flexWrap: 'wrap'}}>
                         <TouchableOpacity style={[styles.btn,{width: vw/2-15}]}>
                             <Icon name="heart" style={styles.btnIcon} />

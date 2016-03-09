@@ -12,6 +12,7 @@ import React , {
 } from 'react-native';
 
 var vh = Dimensions.get('window').height;
+var ANNOUNCE = 'https://tztestzt.applinzi.com/Api/App/news?id=0&datanow=0&datanum=5';
 var BASE_URL = 'http://platform.sina.com.cn/sports_all/client_api?app_key=3571367214&_sport_t_=football&_sport_s_=opta&_sport_a_=teamOrder&type=213&season=2015&format=json';
 export default class extends React.Component{
   state = {
@@ -21,25 +22,32 @@ export default class extends React.Component{
     loaded: false,
   };
   componentDidMount () {
-    fetch(BASE_URL)
+    fetch(ANNOUNCE)
     .then((res) => res.json())
     .then((resData) => {
+      resData = JSON.parse(resData);
       this.setState({
-        dataSource: this.state.dataSource.cloneWithRows(resData.result.data),
+        dataSource: this.state.dataSource.cloneWithRows(resData.data),
         loaded: true
       })
     }).catch((err)=>alert('error connect '+err));
   }
-  renderRow (dataSource) {
+  renderRow (rowData) {
+    function getTime(str) {
+      let date = new Date(str);
+      let month = date.getMonth()+1;
+      let tmp = date.getFullYear()+'-'+month+'-'+date.getDate();
+      return tmp;
+    }
     return (
       <TouchableOpacity style={styles.rowItem}>
         <View style={styles.rowContainer}>
           <View style={styles.row}>
-            <Text style={styles.title}>{dataSource.team_cn}</Text>
-            <Text style={styles.date}>2015.5.26</Text>
+            <Text style={styles.title}>{rowData.title}</Text>
+            <Text style={styles.date}>{getTime(parseInt(rowData.time)*1000)}</Text>
           </View>
           <Image
-            source={{uri: dataSource.logo}}
+            source={{uri: rowData.pic}}
             style={{width: 108,height: 68,backgroundColor: '#d2d2d2'}}
           />
         </View>

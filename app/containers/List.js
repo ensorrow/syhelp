@@ -18,8 +18,8 @@ import Order2 from './Order2';
 import Icon from 'react-native-vector-icons/Ionicons';
 var vh = Dimensions.get('window').height;
 
-var TUTOR_DETAIL = 'https://tztestzt.applinzi.com/Api/App/tutor_detail';
-var BASE_URL = 'http://platform.sina.com.cn/sports_all/client_api?app_key=3571367214&_sport_t_=football&_sport_s_=opta&_sport_a_=teamOrder&type=213&season=2015&format=json';
+var TUTOR_DETAIL = 'https://tztestzt.applinzi.com/Api/App/tutor_detail?datanow=0&datanum=10';
+
 class FollowBtn extends React.Component{
   state = {
     followed: false
@@ -49,7 +49,7 @@ class FollowBtn extends React.Component{
 export default class List extends React.Component{
   state = {
     opacity: 1,
-    dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}).cloneWithRows(['小张老师','交大李老师','师友团队','师友团队','师友团队','师友团队','师友团队','师友团队','师友团队','师友团队','师友团队','师友团队','师友团队','师友团队','师友团队','师友团队']),
+    dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}),
   };
   componentDidMount () {
     function mystatus(response) {
@@ -60,20 +60,19 @@ export default class List extends React.Component{
       }
     }
     function myjson(res) {
-      return res.json()
+      return res.json();
     }
-    //function status(res) {
-    //  if(res.status>=200&&res.status<300){
-    //    return Promise.resolve(res);
-    //  } else {
-    //    return Promise.reject(new Error(res.statusText))
-    //  }
-    //}
-    fetch(BASE_URL)
-        .then(mystatus)
-        .then(myjson)
-    .then((data)=>console.log(data.result.data[0].team_cn))
-    .catch((err)=>alert('err'+err));
+    fetch(TUTOR_DETAIL)
+      .then(mystatus)
+      .then(myjson)
+      .then((data)=>{
+        data = JSON.parse(data);
+        this.setState({
+          dataSource: this.state.dataSource.cloneWithRows(data.data),
+          loaded: true
+        });
+      })
+      .catch((err)=>alert('err'+err));
   }
   changeState (e) {
     if(this.state.opacity==0){
@@ -115,7 +114,7 @@ export default class List extends React.Component{
         </View>
         <View style={styles.wordsContainer}>
           <Text style={styles.name}>
-            {rowData}
+            {rowData.name}
           </Text>
           <Text style={styles.qianming}>
             愿我们一起实现理想！

@@ -16,6 +16,43 @@ export default class extends React.Component{
         PASSWORD: '',
         VERIFY: ''
     };
+    login () {
+      let postmsg = 'user='+this.state.USER_NAME+'&pwds='+this.state.PASSWORD;
+      let USER_LOGIN = 'https://tztestzt.applinzi.com/Api/App/login';
+      function status(response) {
+        if (response.status >= 200 && response.status<300) {
+          return Promise.resolve(response);
+        } else {
+          return Promise.reject(new Error(response.statusText));
+        }
+      }
+      function json(response) {
+        return response.json();
+      }
+      let request = new Request(USER_LOGIN, {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: postmsg
+      });
+      let storage = this.props.storage;
+      fetch(request)
+          .then(status)
+          .then(json)
+          .then(function(data) {
+            data = JSON.parse(data);
+            console.log(data.data);
+            storage.save({
+              key: 'loginState',
+              rawData: {
+                token: data.data
+              }
+            })
+          }).catch(function(error) {
+        console.log('request failed', error);
+      });
+    }
     render () {
         return (
             <View style={{marginTop: 20}}>
@@ -43,7 +80,7 @@ export default class extends React.Component{
                         secureTextEntry={true}
                     />
                 </View>
-                <TouchableOpacity style={styles.submitbtn}>
+                <TouchableOpacity style={styles.submitbtn} onPress={() => this.login()}>
                     <Text style={{color: '#fff'}}>登录</Text>
                 </TouchableOpacity>
             </View>
