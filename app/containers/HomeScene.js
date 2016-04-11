@@ -80,7 +80,7 @@ export default class HomeScene extends React.Component{
           </View>
         </View>
         <ScrollView height={vh-124} style={styles.container} automaticallyAdjustContentInsets={false}>
-          <Swiper paginationStyle={{bottom: 6}} autoplay={true} height={77} horizontal={true} >
+          <Swiper paginationStyle={{bottom: 6}} autoplay={false} height={77} horizontal={true} >
             <TouchableOpacity onPress={()=>this.jump('http://ensorrow.github.io')}>
               <Image style={styles.scrollimg}  source={require('../images/scrollimgs1.png')}/>
             </TouchableOpacity>
