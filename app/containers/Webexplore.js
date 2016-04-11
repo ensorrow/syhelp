@@ -40,7 +40,7 @@ class Webbar extends React.Component{
 
 export default class Webexplore extends React.Component{
     state = {
-        url : 'http://www.baidu.com',
+        source : 'http://www.baidu.com',
     };
     getNetworkstatus () {
         //待修改
@@ -66,8 +66,8 @@ export default class Webexplore extends React.Component{
         }
         else{
             let link;
-            if(this.props.url){link = this.props.url}
-            else{link=this.state.url}
+            if(this.props.source){link = this.props.source}
+            else{link=this.state.source}
             content = (
                 <WebView
                     ref='webview'

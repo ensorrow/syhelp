@@ -18,7 +18,7 @@ import Order2 from './Order2';
 import Icon from 'react-native-vector-icons/Ionicons';
 var vh = Dimensions.get('window').height;
 
-var TUTOR_DETAIL = 'https://tztestzt.applinzi.com/Api/App/tutor_detail?datanow=0&datanum=10';
+var TUTOR_DETAIL = 'https://ensorrow.applinzi.com/Api/App/tutor_detail?datanow=0&datanum=10';
 
 class FollowBtn extends React.Component{
   state = {

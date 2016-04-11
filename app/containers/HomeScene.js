@@ -44,7 +44,7 @@ export default class HomeScene extends React.Component{
         name: 'webview',
         component: Webexplore,
         params: {
-          url: url
+          source: url
         }
       })
     }
@@ -129,7 +129,7 @@ export default class HomeScene extends React.Component{
                   nav.push({
                     name: '品牌家教列表',
                     component: List,
-                    bar: true,
+                    bar: true
                   });
                 } else{
                   throw error;
@@ -143,11 +143,10 @@ export default class HomeScene extends React.Component{
                 let nav = this.props.navigator;
                 if(nav) {
                   nav.push({
-                    name: '品牌家教列表',
                     component: Webexplore,
                     bar: false,
                     params: {
-                      url: 'http://ensorrow.github.io'
+                      source: 'http://ensorrow.github.io'
                     }
                   });
                 } else{

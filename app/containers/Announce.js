@@ -12,14 +12,13 @@ import React , {
 } from 'react-native';
 
 var vh = Dimensions.get('window').height;
-var ANNOUNCE = 'https://tztestzt.applinzi.com/Api/App/news?id=0&datanow=0&datanum=5';
-var BASE_URL = 'http://platform.sina.com.cn/sports_all/client_api?app_key=3571367214&_sport_t_=football&_sport_s_=opta&_sport_a_=teamOrder&type=213&season=2015&format=json';
+var ANNOUNCE = 'https://ensorrow.applinzi.com/Api/App/news?id=0&datanow=0&datanum=5';
 export default class extends React.Component{
   state = {
     dataSource: new ListView.DataSource({
         rowHasChanged: (row1, row2) => row1 !== row2,
       }),
-    loaded: false,
+    loaded: false
   };
   componentDidMount () {
     fetch(ANNOUNCE)

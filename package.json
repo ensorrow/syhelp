@@ -6,7 +6,8 @@
     "start": "react-native start"
   },
   "dependencies": {
-    "react-native": "^0.19.0",
+    "react": "^0.14.8",
+    "react-native": "^0.22.0",
     "react-native-communications": "0.0.6",
     "react-native-gifted-messenger": "0.0.20",
     "react-native-radio-buttons": "^0.8.1",
